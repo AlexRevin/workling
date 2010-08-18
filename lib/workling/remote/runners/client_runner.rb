@@ -26,7 +26,7 @@ module Workling
         
         # The workling Client class. Workling::Clients::MemcacheQueueClient.new by default. 
         cattr_accessor :client
-        @@client ||= Workling::Clients::MemcacheQueueClient.new
+        @@client ||= Workling::Clients::AmqpClient.new
         
         # enqueues the job onto the client
         def run(clazz, method, options = {})

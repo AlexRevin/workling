@@ -1,8 +1,6 @@
 require "workling/remote/runners/not_remote_runner"
 require "workling/remote/runners/spawn_runner"
 require "workling/remote/runners/starling_runner"
-require "workling/remote/runners/backgroundjob_runner"
-
 require 'digest/md5'
 
 #
@@ -16,7 +14,7 @@ module Workling
     
     # set the desired invoker. this class grabs work from the job broker and executes it. 
     mattr_accessor :invoker
-    @@invoker ||= Workling::Remote::Invokers::ThreadedPoller
+    @@invoker ||= Workling::Remote::Invokers::EventmachineSubscriber
     
     # retrieve the dispatcher or instantiate it using the defaults
     def self.dispatcher

@@ -31,6 +31,7 @@ module Workling
       
       # request and retrieve work
       def retrieve(key); @amq.queue(key); end
+      
       def request(key, value)
         data = Marshal.dump(value)
         @amq.queue(key).publish(data)
